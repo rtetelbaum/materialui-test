@@ -1,25 +1,39 @@
-import logo from './logo.svg';
+import React from 'react'
+import DeleteIcon from '@material-ui/icons/Delete'
+import 'fontsource-roboto';
+import Typography from '@material-ui/core/Typography';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+	state = {
+		clicked: false
+	}
+
+	clickHandler = () => {
+		if (this.state.clicked === false) {
+			this.setState({clicked: true})
+		} else if (this.state.clicked === true) {
+			this.setState({clicked: false})
+		}
+	}
+
+	render() {
+		return (
+			<div className="App">
+				<DeleteIcon onClick={this.clickHandler} />
+				{ !this.state.clicked ? 
+					<div>
+						<Typography variant="h3">
+							There should be a delete icon above, and this h3 should be in Roboto font.
+						</Typography>
+					</div>
+					:
+					null
+				}
+			</div>
+		);
+	}
 }
 
 export default App;
